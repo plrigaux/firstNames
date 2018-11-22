@@ -23,7 +23,8 @@ with open(sourceFile, "r") as lines:
 
 
 #pull back the markov chain table from file
-count = np.fromfile(chainTable, dtype="int32").reshape(const.arraySize, const.arraySize, const.arraySize)
+count = np.fromfile(chainTable, dtype="int32")
+count = count.reshape(const.arraySize, const.arraySize, const.arraySize)
 
 s = count.sum(axis = 2)
 #print(s)
@@ -35,15 +36,15 @@ p[np.isnan(p)] = 0
 
 K = 100
 NEWLINE = ord("\n") #10
-RANGE_MIN = 4
+WORD_MIN_LENGTH = 4
 WORD_MAX_LENGTH = 12
 
 
 container = {}
-for wordLen in range(RANGE_MIN, WORD_MAX_LENGTH):
+for wordLen in range(WORD_MIN_LENGTH, WORD_MAX_LENGTH):
     container[wordLen] = set()
 
-condition = set(range(RANGE_MIN, WORD_MAX_LENGTH))
+condition = set(range(WORD_MIN_LENGTH, WORD_MAX_LENGTH))
 
 a = range(const.arraySize)
 
