@@ -11,6 +11,10 @@ dirname = os.path.dirname(__file__)
 sourceFile = os.path.join(dirname, const.sourceFile)
 outFile = os.path.join(dirname, const.chainTable)
 
+#Create ouputs directory if doesn't exist
+import pathlib
+pathlib.Path(outFile).parent.mkdir(parents=True, exist_ok=True) 
+
 count = np.zeros((const.arraySize, const.arraySize, const.arraySize), dtype='int32')
 
 with open(sourceFile, "r") as lines:

@@ -15,11 +15,11 @@ chainTable = os.path.join(dirname, const.chainTable)
 import re
 pattern = re.compile("[,]")
 
-originalWords = []
+originalWords = set()
 with open(sourceFile, "r") as lines:
     for l in lines:
         l = pattern.split(l)[0]
-        originalWords.append(l)
+        originalWords.add(l)
 
 
 #pull back the markov chain table from file
@@ -34,17 +34,14 @@ p = count.astype('float') / st
 p[np.isnan(p)] = 0
 
 
-K = 100
+GENERATE_LIMIT = 600 #Number of generated words
 NEWLINE = ord("\n") #10
 WORD_MIN_LENGTH = 4
 WORD_MAX_LENGTH = 12
 
 
+# create a container with a set of words
 container = {}
-for wordLen in range(WORD_MIN_LENGTH, WORD_MAX_LENGTH):
-    container[wordLen] = set()
-
-condition = set(range(WORD_MIN_LENGTH, WORD_MAX_LENGTH))
 
 a = range(const.arraySize)
 
@@ -54,8 +51,8 @@ while True:
     j = 0
     word = ""
 
-
     while True:
+        #get a random character according to a defined probability
         randomSample = choice(a, 1, p = p[i, j, :])
         k = randomSample[0]
         if k != NEWLINE:
@@ -67,30 +64,42 @@ while True:
 
     wordLen = len(word)
 
-    s = container.get(wordLen, None)
+    #If not within expected length then skip 
+    if wordLen < WORD_MIN_LENGTH or wordLen > WORD_MAX_LENGTH:
+        continue
 
-    if not s is None:
-        if len(s) <= K:
-            if word in originalWords:
-                word += "*"
-            s.add(word)
-        else:
-            condition.discard(wordLen)
-            if len(condition) == 0:
-                break
+    generatedWordOccurences = container.get(word, 0)
 
+    #Mark words comming from the original list
+    if word in originalWords:
+        word += "*"
 
-flat_list = []
-for v in container.values():
-    for w in v:
-        flat_list.append(w)
+    #Count the number of generated occurences
+    container[word] = generatedWordOccurences + 1
+
+    #Stop when we reach the limit
+    if len(container) >= GENERATE_LIMIT:
+        break
+
         
 
-f = open(outfile, "w")
+outFile = open(outfile, "w")
 
-for w in sorted(flat_list):
-        print(w)
-        f.write(w, )
-        f.write("\n")
+#Order by words
+from collections import OrderedDict
+d = OrderedDict(sorted(container.items(), key=lambda t: t[0]))
+for w, v in d.items():
+    print(w, " - ", v)
+    outFile.write(w, )
+    outFile.write("\n")
 
-f.close()
+outFile.close()
+
+print(" -------------------------------------------- ")
+
+#Order by generations
+d = OrderedDict(sorted(container.items(), reverse=True, key=lambda x: x[1]))
+for w, v in d.items():
+    print(w, " - ", v)
+    if v == 1:
+        break
