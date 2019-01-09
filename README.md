@@ -10,7 +10,7 @@ To be able to accomplish this, it uses **Markov Chain** taking to account the la
 
 ## How to use
 
-For usability reasons the program is separated between 2 scripts. The first ones create the probability table and the second one generate the output.
+For usability reasons the program is separated between 2 scripts. The [first one](generateChainTable.py) creates the 3D probability table and the [second one](wordGenerator.py) generates the output based on the created table.
 
 ### Configuration
 
