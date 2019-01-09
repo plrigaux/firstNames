@@ -1,16 +1,18 @@
-# First Names
+# First Names Generator
 
-This is a program to generate first names.
+This is a program to generate **"original"** first names.
 
 ## Description
 
-This program takes as input a list of first names with its frequency and it generates new names close from the input list.
+This program takes as input a list of first names from it generates new names sounding close to the ones in the input.
 
-To be able to accomplish this, it uses **Markov Chain** taking to account the last **two** characters to determine the next one. The program also calculate the probability that a character sequence begins or ends the name. The probaility table takes into account the frequency of the name then a character sequence coming from a frequent name will have more weigth than one coming from less frequent names.
+To be able to accomplish this, it uses **Markov Chain** taking to account the last **two** characters to determine the next one. The program also calculate the probability that a character sequence begins or ends the name. The probability table takes into account the frequency of the name then a character sequence coming from a frequent name will have more weight than one coming from less frequent names.
+
+The output marks generated names found in the input (i.e. the program generated an existing name) by appending asterisk character (*) at the name's end.
 
 ## How to use
 
-For usability reasons the program is separated between 2 scripts. The [first one](generateChainTable.py) creates the 3D probability table and the [second one](wordGenerator.py) generates the output based on the created table.
+For usability reasons the program is separated between 2 scripts. The [first one](generateChainTable.py) creates the 3D probability table. The [second one](wordGenerator.py) generates the output based on the created table.
 
 ### Configuration
 
