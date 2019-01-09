@@ -25,7 +25,9 @@ You can easily configure some parameters to suits your needs. Here parameters th
 
 ## The Data
 
-The input data is the 2017 Quebec's baby boy names.
+The input data is the [2017 Quebec's baby boy names](source/firstNamesQuebec2017.txt) with frequency.
+
+You can find the main site [here](https://www.rrq.gouv.qc.ca/en/enfants/banque_prenoms/Pages/banque_prenoms.aspx).
 
 ## Source
 
