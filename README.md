@@ -1,6 +1,6 @@
-# First Names Generator
+# First Names Creator
 
-This is a program to generate **"original"** first names.
+This is a program to create **"original"** first names.
 
 ## Description
 
@@ -8,7 +8,7 @@ This program takes as input a list of first names from it generates new names so
 
 To be able to accomplish this, it uses **Markov Chain** taking to account the last **two** characters to determine the next one. The program also calculate the probability that a character sequence begins or ends the name. The probability table takes into account the frequency of the name then a character sequence coming from a frequent name will have more weight than one coming from less frequent names.
 
-The output marks generated names found in the input (i.e. the program generated an existing name) by appending asterisk character (*) at the name's end.
+The output marks by appending asterisk character (*) at the name's end generated names found in the input (i.e. the program generated an existing name).
 
 ## How to use
 
