@@ -25,7 +25,7 @@ with open(sourceFile, "r") as lines:
         #transform String to Number
         wordOccurences = int(wordOccStr)
         
-        #Add a endline symbol to tell the probability that a charater ends a name
+        #Add a endline symbol to tell the probability that a charater ends a word
         word = word + "\n"
         
         i = 0
