@@ -30,7 +30,11 @@ with open(sourceFile, "r") as lines:
         
         i = 0
         j = 0
-        for k in [ord(c) for c in list(word)]:
+
+        #transform the "word" in an unicode array
+        ordList = [ord(c) for c in list(word)]
+
+        for k in ordList:
             count[i, j, k] += wordOccurences
             i = j
             j = k

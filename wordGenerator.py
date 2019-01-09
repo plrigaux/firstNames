@@ -1,17 +1,25 @@
 import os
 import numpy as np
 from numpy.random import choice, seed
-#seed(1)
-seed()
-
 import constants as const
+
+####################################
+#Configuration parameters
+SEED = None
+GENERATE_LIMIT = 600 #Number of generated words
+NEWLINE = ord("\n") #10
+WORD_MIN_LENGTH = 4
+WORD_MAX_LENGTH = 12
+####################################
+
+seed(SEED)
 
 dirname = os.path.dirname(__file__)
 sourceFile = os.path.join(dirname, const.sourceFile)
 outfile = os.path.join(dirname, const.outfile)
 chainTable = os.path.join(dirname, const.chainTable) 
 
-#Construnct a list of original word
+#Construct a list of original word
 import re
 pattern = re.compile("[,]")
 
@@ -27,17 +35,12 @@ count = np.fromfile(chainTable, dtype="int32")
 count = count.reshape(const.arraySize, const.arraySize, const.arraySize)
 
 s = count.sum(axis = 2)
-#print(s)
 
 st = np.tile(s.T, (const.arraySize, 1, 1)).T
 p = count.astype('float') / st
 p[np.isnan(p)] = 0
 
 
-GENERATE_LIMIT = 600 #Number of generated words
-NEWLINE = ord("\n") #10
-WORD_MIN_LENGTH = 4
-WORD_MAX_LENGTH = 12
 
 
 # create a container with a set of words
