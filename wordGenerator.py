@@ -8,7 +8,7 @@ import constants as const
 SEED = None
 GENERATE_LIMIT = 600 #Number of generated words
 NEWLINE = ord("\n") #10
-WORD_MIN_LENGTH = 4
+WORD_MIN_LENGTH = 6
 WORD_MAX_LENGTH = 12
 ####################################
 

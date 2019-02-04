@@ -31,6 +31,20 @@ The input data is the [2017 Quebec's baby boy names](source/firstNamesQuebec2017
 
 You can find the main site [here](https://www.rrq.gouv.qc.ca/en/enfants/banque_prenoms/Pages/banque_prenoms.aspx).
 
+## Output
+
+Here a sample output it generates:
+
+* LUCALE
+* DYLAUD
+* MILOIN
+* RAPHAN
+* RAYSON
+* JAMUEL
+* DAMUELIOT
+* NOLIAM
+* PAVYKO
+
 ## Source
 
 The inspiration of this program comes from "The machine inventing words" project.
